@@ -9,29 +9,43 @@
     <body>
         <h1>Buch anlegen</h1>
 
-        <form action="http://martinakraus.net/createBookEntry.php" method="GET">
+        <form id="bookentry" name="bookentry" action="http://martinakraus.net/createBookEntry.php" method="GET">
 
             <div id="section">
-                <p>Buchtitel
-                    <input type="text" size="30" maxlength="40" name="Titel des Buches" placeholder="titel" autofocus required/>
-                </p>
-                <p>Buchautor
-                    <input type="text" size="30" maxlength="40" name="Buchautor" placeholder="autor" required/>
-                </p>
-                <p>ISBN
-                    <input type="text" size="30" maxlength="13" name="ISBN" placeholder="ISBN 978-3-86680-192-9" pattern="[0-9]{13}" title="13-Stellige ISBN-Nummer ohne Trennstriche!"/>
-                </p>
-                <p>Kapitel
-                    <input type="number" min="0" max="40" name="Kapitel" step="0.1" placeholder="1"/>
-                </p>
-                <p>Erscheinungsjahr
-                    <input type="number" min="1900" max="2015" maxlenth="4" name="Erscheinungsjahr" step="1" placeholder="2000" pattern="[0-9]{4}"/>
-                </p>
-                <p>Auflage
-                    <input type="number" min="1" max="20" name="Auflage" step="1" placeholder="1" required/>
-                </p>
-                <p>Art des Buches
-                    <select name="Art des Buches"size="1">
+
+                <div>
+                    <label for="buchtitel">Buchtitel</label>
+                    <input type="text" size="30" maxlength="40" id="buchtitel" name="Titel des Buches" placeholder="titel" autofocus required/>
+                </div>
+
+                <div>
+                    <label for="buchautor">Buchautor</label>
+                    <input type="text" size="30" maxlength="40" id="buchautor" name="Buchautor" placeholder="autor" required/>
+                </div>
+
+                <div>
+                    <label for="isbn">ISBN</label>
+                    <input type="text" size="30" maxlength="13" id="isbn" name="ISBN" placeholder="ISBN 978-3-86680-192-9" pattern="[0-9]{13}" title="13-Stellige ISBN-Nummer ohne Trennstriche!"/>
+                </div>
+
+                <div>
+                    <label for="kapitel">Kapitel</label>
+                    <input type="number" min="0" max="40" id="kapitel" name="Kapitel" step="0.1" placeholder="1"/>
+                </div>
+
+                <div>
+                    <label for="jahr">Erscheinungsjahr</label>
+                    <input type="number" min="1800" max="2015" maxlenth="4" id="jahr" name="Erscheinungsjahr" step="1" placeholder="2000" pattern="[0-9]{4}"/>
+                </div>
+
+                <div>
+                    <label for="auflage">Auflage</label>
+                    <input type="number" min="1" max="20" id="auflage" name="Auflage" step="1" placeholder="1" required/>
+                </div>
+
+                <div>
+                    <label for="art">Art des Buches</label>
+                    <select name="Art des Buches"size="1" id="art">
                         <option value="eBook">eBook</option>
                         <option value="Newspaper">Newspaper</option>
                         <option value="Taschenbuch">Taschenbuch</option>
@@ -39,36 +53,66 @@
                         <option value="Hardcover" selected="selected">Hardcover</option>
                         <option value="Paperback">Paperback</option>
                     </select>
-                </p>
-                <p>Genre
-                    <div id="box1">
-                        <input type="checkbox" name="Genre" value="Horror" checked="checked"/>Horror
-                        <input type="checkbox" name="Genre" value="Psycho"/>Psycho
-                        <input type="checkbox" name="Genre" value="Krimi"/>Krimi
+                </div>
+
+                <div>
+                <label>Genre</label>
+
+                <div id="box1">
+                    <div>
+                        <label for="horror">Horror</label>
+                        <input type="checkbox" id="horror" class="genre" name="Genre" value="Horror" checked="checked"/>
+
                     </div>
-                    <div id="box2">
-                        <input type="checkbox" name="Genre" value="Doku"/>Doku
-                        <input type="checkbox" name="Genre" value="Komödie"/>Komödie
-                        <input type="checkbox" name="Genre" value="Romanze"/>Romanze
+                    <div>
+                        <label for="psycho">Psycho</label>
+                        <input type="checkbox" id="psycho" class="genre" name="Genre" value="Psycho" />
                     </div>
-                </p>
+                    <div>
+                        <label for="krimi">Krimi</label>
+                        <input type="checkbox" id="krimi" class="genre" name="Genre" value="Krimi" />
+                    </div>
+                </div>
+
+                <div id="box2">
+                    <div>
+                        <label for="doku">Doku</label>
+                        <input type="checkbox" id="doku" class="genre" name="Genre" value="Doku" />
+                    </div>
+                    <div>
+                        <label for="komödie">Komödie</label>
+                        <input type="checkbox" id="komödie" class="genre" name="Genre" value="Komödie" />
+                    </div>
+                    <div>
+                        <label for="romanze">Romanze</label>
+                        <input type="checkbox" id="romanze" class="genre" name="Genre" value="Romanze" />
+                    </div>
+                </div>
+                </div>
+
             </div>
 
             <div id="reg">
-                <p>Ihr Vorname
-                    <input type="text" size="30" maxlength="40" name="Ihr Vorname" placeholder="vorname" required/>
-                </p>
-                <p>Ihr Nachname
-                    <input type="text" size="30" maxlength="40" name="Ihr Nachname" placeholder="name" required/>
-                </p>
-                <p>Favorit makieren
-                    <input type="checkbox" name="Favorit makieren" checked="checked" />
-                </p>
+
+                <div>
+                    <label for="vorname">Ihr Vorname</label>
+                    <input type="text" size="30" maxlength="40" id="vorname" name="Ihr Vorname" placeholder="vorname" required/>
+                </div>
+                <div>
+                    <label for="nachname">Ihr Nachname</label>
+                    <input type="text" size="30" maxlength="40" id="nachname" name="Ihr Nachname" placeholder="nachname" required/>
+                </div>
+                <div>
+                    <label for="favorit">Favorit makieren</label>
+                    <input type="checkbox" id="favorit" name="Favorit makieren" checked="checked"/>
+                </div>
+
             </div>
 
-            <input type = "submit" class="button" value="Absenden" onclick="alert('Die Formularfelder werden an das ' +
-                'php-Skript http://martinakraus.net/createBookEntry.php übertragen!')"/>
-
+            <div>
+                <input type = "submit" class="button" value="Absenden" onclick="alert('Die Formularfelder werden an das ' +
+                    'php-Skript http://martinakraus.net/createBookEntry.php übertragen!')"/>
+            </div>
         </form>
 
     </body>
