@@ -1,0 +1,129 @@
+.header {
+    position: relative;
+    height: 200px;
+}
+
+.header .logo {
+    position: absolute;
+    top:  80px;
+    left:  280px;
+    font-size: 22px;
+}
+
+#body {
+    width: 1200px;
+    height: 800px;
+    margin: 0 auto;
+}
+
+body {
+    background: rgb(153,217,234);
+    margin: 0;
+    color: rgb(63,72,204);
+    font: normal normal bold 16px arial, sans-serif;
+}
+
+.main {
+    position: relative;
+    padding: 30px;
+}
+
+.main .section {
+    position: absolute;
+    padding-left: 50px;
+    padding-right:580px;
+    width: 450px;
+}
+
+.main .reg {
+    position: absolute;
+    font-weight: normal;
+    right: 50px;
+    top: 30px;
+}
+
+.main .reg .input {
+    width: 55%;
+    margin-left: 40px;
+}
+
+.main .input {
+    float: right;
+    width: 55%;
+}
+
+.main .input:focus {
+    background-color: #d9d9d9;
+}
+
+.main .form {
+    margin-top: 20px;
+    position:relative;
+}
+
+#art {
+    width: 56%;
+    text-align: right;
+}
+
+.button {
+    position: absolute;
+    color: rgb(63,72,204);
+    background: rgb(0,162,232);
+    font-size: 16px;
+    font-weight: bold;
+
+    bottom: -500px;
+    left:400px;
+
+    height: 30px;
+    width: 270px;
+
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgb(63,72,204);
+}
+
+.button:active {
+    background-color: rgb(63,72,204);
+    color: black;
+    text-decoration:none;
+}
+
+.button:hover {
+    background-color: rgb(63,72,204);
+    color: black;
+    text-decoration:none;
+}
+
+.box1, .box2 {
+    position: absolute;
+    color: rgb(0,0,0);
+    font-size: 14px;
+    float:left;
+    width: 60%;
+    line-height: 25px;
+}
+
+.box1 {
+    margin-left: 200px;
+    margin-top: -15px;
+}
+
+.box2 {
+    margin-left: 340px;
+    margin-top: -15px;
+}
+
+.genre {
+    float: left;
+    margin-right: 10px;
+}
+
+#favorit {
+    margin-left: 50px;
+}
+
+#horror, #psycho, #krimi, #doku, #komoedie, #romanze {
+    margin-top: 5px;
+}
