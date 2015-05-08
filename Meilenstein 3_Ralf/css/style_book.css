@@ -1,0 +1,42 @@
+body {
+    background: rgb(153,217,234);
+    margin: 0 auto;
+    color: rgb(63,72,204);
+    font-family: Arial;
+}
+
+table, th , td  {
+    border: 3px solid rgb(63,72,204);
+    border-collapse: collapse;
+    padding: 5px;
+    text-align: center;
+}
+
+#horror, #roman{
+    color: rgb(0,0,0);
+}
+
+.header {
+    color: rgb(63,72,204);
+}
+
+.header .logo {
+    font-size: 30px;
+}
+
+.header .nav {
+    border: 3px solid;
+}
+
+.header .nav li{
+    display: inline;
+    list-style: none;
+}
+
+#roman:hover {
+    background: rgb(0,162,232);
+}
+
+#horror:hover {
+    background: rgb(0,162,232);
+}
