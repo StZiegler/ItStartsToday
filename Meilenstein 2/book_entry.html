@@ -4,6 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="css/style_book_entry.css" />
 
+    <!-- Meilenstein 3 -->
+    <link rel="stylesheet" type="text/css" href="../Meilenstein 3/css/validation.css" />
+    <script type="text/javascript" src="../Meilenstein 3/js/js_validation.js"></script>
+
     <title>Book Entry</title>
 </head>
 
@@ -18,7 +22,7 @@
                 <div class="section">
                     <div class="form">
                         <label for="buchtitel">Buchtitel</label>
-                        <input type="text" size="30" maxlength="40" id="buchtitel" class="input" name="Titel des Buches" placeholder="titel" autofocus required/>
+                        <input type="text" size="30" maxlength="40" id="buchtitel" class="input" name="Titel des Buches" placeholder="titel" autofocus required />
                     </div>
 
                     <div class="form">
@@ -108,8 +112,9 @@
                 </div>
 
                 <div>
-                    <input type = "submit" class="button" value="Absenden" onclick="alert('Die Formularfelder werden an das ' +
-                        'php-Skript http://martinakraus.net/createBookEntry.php übertragen!')"/>
+                    <input type="submit" class="button" value="Absenden" onclick="validation()" />
+                    <!-- alert('Die Formularfelder werden an das ' +
+                        'php-Skript http://martinakraus.net/createBookEntry.php übertragen!') -->
                 </div>
             </form>
         </div>
