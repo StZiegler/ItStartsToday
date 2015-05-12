@@ -1,7 +1,4 @@
-////read JSON data: http://www.w3schools.com/json/json_example.asp 
-
-{
-"horrordata": [
+[
 	{
 	"autor": "Stephen King",
 	"titel": "The Stand - Das letzte Gefecht",
@@ -66,4 +63,3 @@
 	"auflage": 11
 	}
 ]
-}

@@ -1,8 +1,9 @@
 body {
     background: rgb(153,217,234);
     margin: 0 auto;
-    color: rgb(63,72,204);
+    color: rgb(0,0,0);
     font-family: Arial;
+    color: rgb(63,72,204);
 }
 
 table, th , td  {
@@ -14,6 +15,7 @@ table, th , td  {
 
 #horror, #roman{
     color: rgb(0,0,0);
+    font-weight: 600;
 }
 
 .header {
@@ -39,4 +41,17 @@ table, th , td  {
 
 #horror:hover {
     background: rgb(0,162,232);
+}
+
+#id01, #id02 {
+    margin: 0 auto;
+}
+
+#tableHead {
+    color: black;
+    font-weight: 600;
+}
+
+#roman:active {
+
 }
