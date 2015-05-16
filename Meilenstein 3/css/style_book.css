@@ -13,45 +13,53 @@ table, th , td  {
     text-align: center;
 }
 
+#id01, #id02 {
+    margin-left: 100px;
+}
+
 #horror, #roman{
     color: rgb(0,0,0);
     font-weight: 600;
+    margin-right: 55px;
+    margin-bottom: 50px;
 }
 
 .header {
     color: rgb(63,72,204);
+    margin: 0 auto;
+    padding: 0;
 }
 
-.header .logo {
+.logo {
+    margin-left: 400px;
     font-size: 30px;
 }
 
-.header .nav {
-    border: 3px solid;
+.nav {
+    background-color: rgb(63,72,204);
+    width: 620px;
+    height: 25px;
+    border: 3px solid #3f48cc;
+    list-style: none;
+    margin-left: 180px;
+    margin-bottom: 50px;
+    margin-top: 50px;
 }
 
-.header .nav li{
+.nav li {
     display: inline;
     list-style: none;
 }
 
-#roman:hover {
-    background: rgb(0,162,232);
-}
-
-#horror:hover {
-    background: rgb(0,162,232);
-}
-
-#id01, #id02 {
-    margin: 0 auto;
+.nav a {
+    text-decoration: none;
+    padding-left: 120px;
+    padding-right: 120px;
+    margin: -40px;
+    padding-bottom: 7px;
 }
 
 #tableHead {
     color: black;
     font-weight: 600;
-}
-
-#roman:active {
-
 }
