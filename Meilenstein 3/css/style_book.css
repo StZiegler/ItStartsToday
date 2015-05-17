@@ -14,14 +14,24 @@ table, th , td  {
 }
 
 #id01, #id02 {
-    margin-left: 100px;
+    margin-left: 150px;
 }
 
 #horror, #roman{
     color: rgb(0,0,0);
     font-weight: 600;
-    margin-right: 55px;
-    margin-bottom: 50px;
+    text-decoration: none;
+    position: absolute;
+    margin-top: 1px;
+    padding: 3px 150px 3px 150px;
+
+}
+#roman {
+    margin-left: 295px;
+}
+
+#horror {
+    margin-left: -40px;
 }
 
 .header {
@@ -31,32 +41,23 @@ table, th , td  {
 }
 
 .logo {
-    margin-left: 400px;
+    margin-left: 500px;
     font-size: 30px;
 }
 
 .nav {
+    position: relative;
     background-color: rgb(63,72,204);
-    width: 620px;
-    height: 25px;
+    width: 650px;
+    height: 26px;
     border: 3px solid #3f48cc;
     list-style: none;
-    margin-left: 180px;
-    margin-bottom: 50px;
-    margin-top: 50px;
+    margin: 50px 0px 50px 250px;
 }
 
 .nav li {
     display: inline;
     list-style: none;
-}
-
-.nav a {
-    text-decoration: none;
-    padding-left: 120px;
-    padding-right: 120px;
-    margin: -40px;
-    padding-bottom: 7px;
 }
 
 #tableHead {
