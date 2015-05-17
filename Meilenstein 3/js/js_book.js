@@ -1,9 +1,3 @@
-function firstload(){
-    var horror = document.getElementById("horror");
-    horror.checked = true;
-    createHorrorBook();
-}
-
 // Elemente einblenden
 function show_elements()
 {
