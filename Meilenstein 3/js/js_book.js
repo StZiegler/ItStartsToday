@@ -24,9 +24,12 @@ function createHorrorBook() {
     var horrorbooks = "../json/horror_books.json";
 
     xmlhttp_horror.onreadystatechange = function () {
+
+        //Serverantwort der Anfrage als String
         var response = xmlhttp_horror.responseText;
         var arr = JSON.parse(response);
 
+        // Antwort des Servers liegt vollständig vor und die Anfrage war erfolgreich
         if (xmlhttp_horror.readyState == 4 && xmlhttp_horror.status == 200) {
             var out = createTable(arr.horrordata);
             document.getElementById("id01").innerHTML = out;
@@ -34,7 +37,9 @@ function createHorrorBook() {
             document.getElementById("roman").style.background = "rgb(63,72,204)";
         }
     }
+    // Anfrage erstellen
     xmlhttp_horror.open("GET", horrorbooks, true);
+    // Anfrage absenden
     xmlhttp_horror.send();
 }
 
