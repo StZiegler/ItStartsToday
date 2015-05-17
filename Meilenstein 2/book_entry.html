@@ -22,32 +22,32 @@
                 <div class="section">
                     <div class="form">
                         <label for="buchtitel">Buchtitel</label>
-                        <input type="text" size="30" maxlength="40" id="buchtitel" class="input" name="Titel des Buches" placeholder="titel" autofocus required />
+                        <input type="text" size="30" id="buchtitel" class="input" name="Titel des Buches" placeholder="titel" autofocus />
                     </div>
 
                     <div class="form">
                         <label for="buchautor">Buchautor</label>
-                        <input type="text" size="30" maxlength="40" id="buchautor" class="input" name="Buchautor" placeholder="autor" required/>
+                        <input type="text" size="30" id="buchautor" class="input" name="Buchautor" placeholder="autor"/>
                     </div>
 
                     <div class="form">
                         <label for="isbn">ISBN</label>
-                        <input type="text" size="30" maxlength="13" id="isbn" class="input" name="ISBN" placeholder="ISBN 978-3-86680-192-9" pattern="[0-9]{13}" title="13-Stellige ISBN-Nummer ohne Trennstriche!"/>
+                        <input type="text" size="30" id="isbn" class="input" name="ISBN" placeholder="ISBN 978-3-86680-192-9"/>
                     </div>
 
                     <div class="form">
                         <label for="kapitel">Kapitel</label>
-                        <input type="number" min="0" max="40" id="kapitel" class="input" name="Kapitel" step="0.1" placeholder="1"/>
+                        <input type="number" id="kapitel" class="input" name="Kapitel" step="0.1" placeholder="1"/>
                     </div>
 
                     <div class="form">
                         <label for="jahr">Erscheinungsjahr</label>
-                        <input type="number" min="1800" max="2015" id="jahr" class="input" name="Erscheinungsjahr" step="1" placeholder="2000" />
+                        <input type="number" id="jahr" class="input" name="Erscheinungsjahr" step="1" placeholder="2000" />
                     </div>
 
                     <div class="form">
                         <label for="auflage">Auflage</label>
-                        <input type="number" min="1" max="20" id="auflage" class="input" name="Auflage" step="1" placeholder="1" required/>
+                        <input type="number" id="auflage" class="input" name="Auflage" step="1" placeholder="1"/>
                     </div>
 
                     <div class="form">
@@ -99,11 +99,11 @@
                 <div class="reg">
                     <div class="form">
                         <label for="vorname">Ihr Vorname</label>
-                        <input type="text" class="input" size="30" maxlength="40" id="vorname" name="Ihr Vorname" placeholder="vorname" required/>
+                        <input type="text" class="input" size="30" id="vorname" name="Ihr Vorname" placeholder="vorname"/>
                     </div>
                     <div class="form">
                         <label for="nachname">Ihr Nachname</label>
-                        <input type="text" class="input" size="30" maxlength="40" id="nachname" name="Ihr Nachname" placeholder="nachname" required/>
+                        <input type="text" class="input" size="30" id="nachname" name="Ihr Nachname" placeholder="nachname"/>
                     </div>
                     <div class="form">
                         <label for="favorit">Favorit makieren</label>
@@ -112,7 +112,7 @@
                 </div>
 
                 <div>
-                    <input type="submit" class="button" value="Absenden" onclick="validation()" />
+                    <input type="submit" class="button" value="Absenden" onclick= "return validation()" />
                     <!-- alert('Die Formularfelder werden an das ' +
                         'php-Skript http://martinakraus.net/createBookEntry.php übertragen!') -->
                 </div>
