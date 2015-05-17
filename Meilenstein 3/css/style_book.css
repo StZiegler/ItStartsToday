@@ -17,7 +17,7 @@ table, th , td  {
     margin-left: 150px;
 }
 
-#horror, #roman{
+.nav a{
     color: rgb(0,0,0);
     font-weight: 600;
     text-decoration: none;
