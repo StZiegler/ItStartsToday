@@ -1,141 +1,157 @@
-// start of validation function
+﻿// start of validation function
 function validation () {
 
-	var f = document.forms["bookentry"];
-	var isError = false;
-	var errorCounter = 0;
+    var f = document.forms["bookentry"];
+    var isError = false;
+    var errorCounter = 0;
 
-	// buchtitel
-	if (f.buchtitel.value == "") {
-			isError = true;
-			// add red border fields with wrong content
-			f.buchtitel.classList.add("error");
-			// increment fields for curser position
-			errorCounter++;
-			cursorPos(errorCounter, f.buchtitel);
-		}
+    // buchtitel
+    if (f.buchtitel.value == "") {
+        isError = true;
+        // add red border fields with wrong content
+        f.buchtitel.classList.add("error");
+        // increment fields for curser position
+        errorCounter++;
+        cursorPos(errorCounter, f.buchtitel);
+    } else {
+        f.buchtitel.classList.remove("error");
+    }
 
-	// buchautor
-	if (isNotText(f.buchautor.value)) {
-			isError = true;
-			f.buchautor.classList.add("error");
-			errorCounter++;
-			cursorPos(errorCounter, f.buchautor);
-		}
+    // buchautor
+    if (isNotText(f.buchautor.value)) {
+        isError = true;
+        f.buchautor.classList.add("error");
+        errorCounter++;
+        cursorPos(errorCounter, f.buchautor);
+    } else {
+        f.buchautor.classList.remove("error");
+    }
 
-	//isbn number
-	if(isNotISBN(f.isbn.value)) {
-			isError = true;
-			f.isbn.classList.add("error");
-			errorCounter++;
-			cursorPos(errorCounter, f.isbn);
-		}
+    //isbn number
+    if(isNotISBN(f.isbn.value)) {
+        isError = true;
+        f.isbn.classList.add("error");
+        errorCounter++;
+        cursorPos(errorCounter, f.isbn);
+    } else {
+        f.isbn.classList.remove("error");
+    }
 
-	// kapitel
-	if (isNotCap(f.kapitel.value)) {
-			isError = true;
-			f.kapitel.classList.add("error");
-			errorCounter++;
-			cursorPos(errorCounter, f.kapitel);
-		}
+    // kapitel
+    if (isNotCap(f.kapitel.value)) {
+        isError = true;
+        f.kapitel.classList.add("error");
+        errorCounter++;
+        cursorPos(errorCounter, f.kapitel);
+    } else {
+        f.kapitel.classList.remove("error");
+    }
 
-	// jahr
-	if (isNotRelease(f.jahr.value)) {
-			isError = true;
-			f.jahr.classList.add("error");
-			errorCounter++;
-			cursorPos(errorCounter, f.jahr);
-		}
+    // jahr
+    if (isNotRelease(f.jahr.value)) {
+        isError = true;
+        f.jahr.classList.add("error");
+        errorCounter++;
+        cursorPos(errorCounter, f.jahr);
+    } else {
+        f.jahr.classList.remove("error");
+    }
 
-	//auflage
-	if (isNotCirc(f.auflage.value)) {
-			isError = true;
-			f.auflage.classList.add("error");
-			errorCounter++;
-			cursorPos(errorCounter, f.auflage);
-		}
+    //auflage
+    if (isNotCirc(f.auflage.value)) {
+        isError = true;
+        f.auflage.classList.add("error");
+        errorCounter++;
+        cursorPos(errorCounter, f.auflage);
+    } else {
+        f.auflage.classList.remove("error");
+    }
 
-	//vorname
-	if (isNotText(f.vorname.value)) { 
-			isError = true;
-			f.vorname.classList.add("error");
-			errorCounter++;
-			cursorPos(errorCounter, f.vorname);
-		}
+    //vorname
+    if (isNotText(f.vorname.value)) {
+        isError = true;
+        f.vorname.classList.add("error");
+        errorCounter++;
+        cursorPos(errorCounter, f.vorname);
+    } else {
+        f.vorname.classList.remove("error");
+    }
 
-	// nachname
-	if (isNotText(f.nachname.value)) {
-			isError = true;
-			f.nachname.classList.add("error");
-			errorCounter++;
-			cursorPos(errorCounter, f.nachname);
-		}
+    // nachname
+    if (isNotText(f.nachname.value)) {
+        isError = true;
+        f.nachname.classList.add("error");
+        errorCounter++;
+        cursorPos(errorCounter, f.nachname);
+    } else {
+        f.nachname.classList.remove("error");
+    }
 
-	// show error message in window
-	if (isError) {
-			alert('Einige Eingaben sind fehlerhaft. Bitte überprüfen Sie Ihre Eingaben.');
-		return false;
-		}
-		else {
-			return true;
-		}
-	}
+    // show error message in window
+    if (isError) {
+        alert('Einige Eingaben sind fehlerhaft. Bitte überprüfen Sie Ihre Eingaben.');
+        return false;
+    }
+    else {
+        return true;
+    }
+}
 // end validation
 
 // functions; 
 // check name, vorname, buchautor 
 
 function isNotText(value) {
-	// check if field is empty
-    if (value != "") { 
-    	// only letters are allowed
-        return !/^[a-zA-Z]+$/.test(value); 
+    // check if field is empty
+    if (value != "") {
+        // only letters are allowed
+        return !/^[a-zA-Z]+$/.test(value);
     }
-        return true;
+    return true;
 }
 
 // check isbn --> only 13 digits are allowed 
 function isNotISBN(value) {
-    if (value != "") { 
-        return !/^[0-9]{13}$/.test(value); 
+    if (value != "") {
+        return !/^[0-9]{13}$/.test(value);
     }
-        return true;
+    return true;
 }
 // check jahr --> 
 function isNotRelease (value) {
-	if (value != "") { 
-		// not smaller than 1000 and not bigger than 2015
-		if(value >=1000 && value <=2015) {
-			// numberlength = 4  
-			return !/^[0-9]{4}$/.test(value);
-		}
-	}
-	return true;
+    if (value != "") {
+        // not smaller than 1000 and not bigger than 2015
+        if(value >=1000 && value <=2015) {
+            // numberlength = 4
+            return !/^[0-9]{4}$/.test(value);
+        }
+    }
+    return true;
 }
 
 // check auflage
 function isNotCirc (value) {
-	if(value != "") {
-		if (value >0) {
-		return !/^[0-9]+$/.test(value);
-	}
-		}
-		return true;
+    if(value != "") {
+        if (value >0) {
+            return !/^[0-9]+$/.test(value);
+        }
+    }
+    return true;
 }
 
 // check kapitel 
 function isNotCap (value) {
-	if(value !="") {
-		if(value >0) {
-			return !/[0-9]+(\.[0-9][0-9]?)?/.test(value);
-		}
-	}
-	return true;
+    if(value !="") {
+        if(value >0) {
+            return !/[0-9]+(\.[0-9][0-9]?)?/.test(value);
+        }
+    }
+    return true;
 }
 
 // place cursor on the first field with an error
 function cursorPos (errorCounter, element) {
-	if(errorCounter == 1) {
-		element.focus();
-	}
+    if(errorCounter == 1) {
+        element.focus();
+    }
 }
