@@ -18,23 +18,36 @@ function hide_elements()
     }
 }
 
+function isLoaded(exists){
+
+    if(exists){
+        document.getElementById("horror").style.background = "rgb(0,162,232)";
+        document.getElementById("roman").style.background = "rgb(63,72,204)";
+        hide_elements('id02');
+        show_elements('id01');
+    }else {
+        document.getElementById("roman").style.background = "rgb(0,162,232)";
+        document.getElementById("horror").style.background = "rgb(63,72,204)";
+        hide_elements('id01');
+        show_elements('id02');
+    }
+}
+
+
 // JSON File "Horror" laden und an createTable() übergeben
 function createHorrorBook() {
     var xmlhttp_horror = new XMLHttpRequest();
     var horrorbooks = "../json/horror_books.json";
 
     xmlhttp_horror.onreadystatechange = function () {
-
         //Serverantwort der Anfrage als String
         var response = xmlhttp_horror.responseText;
         var arr = JSON.parse(response);
 
         // Antwort des Servers liegt vollständig vor und die Anfrage war erfolgreich
         if (xmlhttp_horror.readyState == 4 && xmlhttp_horror.status == 200) {
-            var out = createTable(arr.horrordata);
-            document.getElementById("id01").innerHTML = out;
+            document.getElementById("id01").innerHTML = createTable(arr.horrordata);
             document.getElementById("horror").style.background = "rgb(0,162,232)";
-            document.getElementById("roman").style.background = "rgb(63,72,204)";
         }
     }
     // Anfrage erstellen
@@ -53,10 +66,7 @@ function createRomanBook() {
         var arr = JSON.parse(response);
 
         if (xmlhttp_roman.readyState == 4 && xmlhttp_roman.status == 200) {
-            var out = createTable(arr.romandata);
-            document.getElementById("id02").innerHTML = out;
-            document.getElementById("roman").style.background = "rgb(0,162,232)";
-            document.getElementById("horror").style.background = "rgb(63,72,204)";
+            document.getElementById("id02").innerHTML = createTable(arr.romandata);
         }
     }
     xmlhttp_roman.open("GET", romanbooks, true);
