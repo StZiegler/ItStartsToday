@@ -37,12 +37,15 @@ function isLoaded(exists){
 // JSON File "Horror" laden und an createTable() übergeben
 function createHorrorBook() {
     var xmlhttp_horror = new XMLHttpRequest();
-    var horrorbooks = "../json/horror_books.json";
+    var horrorbooks = "http://localhost/WAW-Project/ItStartsToday/Meilenstein 5/php/getBooks.php?category=horror";
 
     xmlhttp_horror.onreadystatechange = function () {
         //Serverantwort der Anfrage als String
         var response = xmlhttp_horror.responseText;
-        var arr = JSON.parse(response);
+
+        if (response !== "") {
+            var arr = JSON.parse(response);
+        }
 
         // Antwort des Servers liegt vollständig vor und die Anfrage war erfolgreich
         if (xmlhttp_horror.readyState == 4 && xmlhttp_horror.status == 200) {
@@ -59,11 +62,14 @@ function createHorrorBook() {
 // JSON File "Roman" laden und an createTable() übergeben
 function createRomanBook() {
     var xmlhttp_roman = new XMLHttpRequest();
-    var romanbooks = "../json/roman_books.json";
+    var romanbooks = "http://localhost/WAW-Project/ItStartsToday/Meilenstein 5/php/getBooks.php?category=roman";
 
     xmlhttp_roman.onreadystatechange = function () {
         var response = xmlhttp_roman.responseText;
-        var arr = JSON.parse(response);
+        
+        if (response !== "") {
+            var arr = JSON.parse(response);
+        }
 
         if (xmlhttp_roman.readyState == 4 && xmlhttp_roman.status == 200) {
             document.getElementById("id02").innerHTML = createTable(arr.romandata);
