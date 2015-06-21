@@ -9,22 +9,22 @@
     <title>Book</title>
 </head>
 
-<body onload="createHorrorBook(), createRomanBook(), hide_elements('id02')";>
+<body onload="loadDbBook('horror'), loadDbBook('roman'), hide_elements('bookTableRoman')">
 
 <div class="header">
 
     <h1 class="logo">Meine Bücher</h1>
 
     <ul class="nav">
-        <li><a href="#" id="horror" onclick="isLoaded(true);"><span>Horror</span></a></li>
-        <li><a href="#" id="roman" onclick="isLoaded(false);"><span>Roman</span></a></li>
+        <li><a href="#" value="horror" id="horror" onclick="isLoaded('horror')"><span>Horror</span></a></li>
+        <li><a href="#" value="roman" id="roman" onclick="isLoaded('roman')"><span>Roman</span></a></li>
     </ul>
 
 </div>
 
 <div class="content">
-    <div id="id01" ></div>
-    <div id="id02" ></div>
+    <div id="bookTableHorror" ></div>
+    <div id="bookTableRoman" ></div>
 </div>
 
 </body>
