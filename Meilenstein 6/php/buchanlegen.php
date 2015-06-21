@@ -96,6 +96,16 @@ if (isset($_GET['eintragen'])) {
 
     // Speicher die Daten in der Datenbank, falls kein Fehler vorliegt
     if (!$isError) {
+        $userId = 0;
+
+        $sqli = "SELECT user_id FROM benutzerInfo WHERE vorname='$vorname' AND nachname ='$nachname'"; 
+        $result = mysqli_query($conn, $sqli); 
+
+        while ($row = mysqli_fetch_array($result)) {
+            $userId = $row["user_id"];
+        }
+    
+
         //Anzahl aktiver checkboxen
         $anzahl = count ( $_GET['genre'] );
 
@@ -128,12 +138,14 @@ if (isset($_GET['eintragen'])) {
             echo "Datensatz konnte nicht gespeichert werden";
 
         // Anfrage zusammenstellen der an die DB geschickt werden soll
+        if($userId == 0) {
         $sql = "INSERT INTO benutzerInfo (vorname, nachname, favorit)
         VALUES('$vorname', '$nachname', '$favorit')";
 
         $sqlResult = mysqli_query($conn,$sql);
         if (!$sqlResult)
             echo "Datensatz konnte nicht gespeichert werden";
+        }   
     } else {
         echo "\n Die Daten sind Fehlerhaft, weshalb diese nicht in der Datenbank gespeichert werden können!";
     }
