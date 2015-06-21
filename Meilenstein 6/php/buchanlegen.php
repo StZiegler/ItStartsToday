@@ -16,9 +16,9 @@ if ($conn->connect_error) {
 // Using database
 $sql = "USE $dbname";
 if ($conn->query($sql) === TRUE) {
-    echo "Database using successfully";
+    echo "Database connection opened successfully";
 } else {
-    echo "Error using db: " . $conn->error;
+    echo "Error couldn't be opened due error: " . $conn->error;
 }
 
 
@@ -38,45 +38,146 @@ if (isset($_GET['eintragen'])) {
     $favorit = isset( $_GET['favorit'] ) ? 1 : 0;
     $art = $_GET['art'];
 
-    //Anzahl aktiver checkboxen
-    $anzahl = count ( $_GET['genre'] );
+    // Variable zum Festhalten der Fehler
+    $isError = false;
 
-    if ( $anzahl == 1 )  {
-        $genre = $_GET['genre'][0];
+    // buchtitel
+    if ($titel == "") {
+        $isError = true;
     }
-    //Wenn mehrere Checkboxen aktiviert sind, muss eine Schleife durchlaufen werden
-    else if ( $anzahl > 1 ) {
-        //erstellt ein leeres array
-        $arten = array ();
-        foreach ( $_GET['genre'] as $art ){
-            $arten[] = $art ;
+
+    // buchautor
+    if (isNotText($autor)) {
+        echo "Autor ist kein Text \n";
+        $isError = true;
+    }
+
+    //isbn number
+    if(isNotISBN($isbn)) {
+        echo "ISBN ist keine Nummer \n";
+        $isError = true;
+    }
+
+    // kapitel
+    if (isNotCap($kapitel)) {
+        echo "Kapitel ist fehlerhaft \n";
+        $isError = true;
+    }
+
+    // jahr
+    if (isNotRelease($erscheinungsjahr)) {
+        echo "Jahr ist fehlerhaft \n";
+        $isError = true;
+    }
+
+    //auflage
+    if (isNotCirc($auflage)) {
+        echo "Auflage ist fehlerhaft \n";
+        $isError = true;
+    }
+    
+    //vorname
+    if (isNotText($vorname)) {
+        echo "Vorname ist fehlerhaft \n";
+        $isError = true;
+    }
+
+    // nachname
+    if (isNotText($nachname)) {
+        echo "Nachname ist fehlerhaft \n";
+        $isError = true;
+    }
+
+    // Speicher die Daten in der Datenbank, falls kein Fehler vorliegt
+    if (!$isError) {
+        //Anzahl aktiver checkboxen
+        $anzahl = count ( $_GET['genre'] );
+
+        if ( $anzahl == 1 )  {
+            $genre = $_GET['genre'][0];
         }
-        // implode() Verbindet Array-Elemente zu einem String
-        $genre = implode ( ', ', $arten );
-    }else{
-        $genre="-";
+        //Wenn mehrere Checkboxen aktiviert sind, muss eine Schleife durchlaufen werden
+        else if ( $anzahl > 1 ) {
+            //erstellt ein leeres array
+            $arten = array ();
+            foreach ( $_GET['genre'] as $art ){
+                $arten[] = $art ;
+            }
+            // implode() Verbindet Array-Elemente zu einem String
+            $genre = implode ( ', ', $arten );
+        }else{
+            $genre="-";
+        }
+
+        // Anfrage zusammenstellen der an die DB geschickt werden soll
+        $sql = "INSERT INTO book (autor, titel, kapitel, buchart, isbn, erscheinungsjahr, auflage, genre)
+            VALUES('$autor', '$titel', '$kapitel', '$art', '$isbn', '$erscheinungsjahr', '$auflage', '$genre')";
+
+        // Schickt die Anfrage an die DB und schreibt die Daten in die Tabelle
+        $sqlResult = mysqli_query($conn,$sql);
+
+        if (!$sqlResult) // Datensatz konnte nicht gespeichert werden:
+            echo "Datensatz konnte nicht gespeichert werden";
+
+        // Anfrage zusammenstellen der an die DB geschickt werden soll
+        $sql = "INSERT INTO benutzerInfo (benutzer, favorit)
+            VALUES('$name', '$favorit')";
+
+        $sqlResult = mysqli_query($conn,$sql);
+        if (!$sqlResult)
+            echo "Datensatz konnte nicht gespeichert werden";
+    } else {
+        echo "\n Die Daten sind Fehlerhaft, weshalb diese nicht in der Datenbank gespeichert werden können!";
     }
-
-    // Anfrage zusammenstellen der an die DB geschickt werden soll
-    $sql = "INSERT INTO book (autor, titel, kapitel, buchart, isbn, erscheinungsjahr, auflage, genre)
-        VALUES('$autor', '$titel', '$kapitel', '$art', '$isbn', '$erscheinungsjahr', '$auflage', '$genre')";
-
-    // Schickt die Anfrage an die DB und schreibt die Daten in die Tabelle
-    $sqlResult = mysqli_query($conn,$sql);
-
-    if (!$sqlResult) // Datensatz konnte nicht gespeichert werden:
-        echo "Datensatz konnte nicht gespeichert werden";
-
-    // Anfrage zusammenstellen der an die DB geschickt werden soll
-    $sql = "INSERT INTO benutzerInfo (benutzer, favorit)
-        VALUES('$name', '$favorit')";
-
-    $sqlResult = mysqli_query($conn,$sql);
-    if (!$sqlResult)
-        echo "Datensatz konnte nicht gespeichert werden";
 
 } // ENDE: if(isset($_GET['eintragen'])) ...
 
 mysqli_close($conn);
+
+function isNotText($value) {
+    if($value != "") {
+       return preg_match("/^[a-zA-Z]+$/", $value) == 0;
+    }
+
+    return true;
+}
+
+function isNotISBN($value) {
+    if ($value != "") {
+        return preg_match("/^[0-9]{13}$/", $value) == 0;
+    }
+    return true;
+}
+
+function isNotRelease ($value) {
+    if ($value != "") {
+        // not smaller than 1000 and not bigger than 2015
+        if($value >=1000 && $value <=2015) {
+            // numberlength = 4
+            return preg_match("/^[0-9]{4}$/",$value) == 0;
+        }
+    }
+    return true;
+}
+
+function isNotCirc ($value) {
+    if($value != "") {
+        if ($value > 0) {
+            return preg_match("/^[0-9]+$/", $value) == 0;
+        }
+    }
+    return true;
+}
+
+function isNotCap ($value) {
+    if($value !="") {
+        if($value > 0) {
+            return preg_match("/^[0-9]+(\.[0-9][0-9]?)?$/", $value) == 0;
+        }
+    }
+    return true;
+}
+
+
 
 ?>
