@@ -37,6 +37,12 @@ if (isset($_GET['eintragen'])) {
     $auflage = (int) $_GET['auflage'];
     $favorit = isset( $_GET['favorit'] ) ? 1 : 0;
     $art = $_GET['art'];
+    $isHorror = isset( $_GET['horror'] ) ? 1 : 0;
+    $isPsycho = isset( $_GET['psycho'] ) ? 1 : 0;
+    $isKrimi = isset( $_GET['krimi'] ) ? 1 : 0;
+    $isDoku = isset( $_GET['doku'] ) ? 1 : 0;
+    $isKomoedie = isset( $_GET['komoedie'] ) ? 1 : 0;
+    $isRoman = isset( $_GET['roman'] ) ? 1 : 0;
 
     // Variable zum Festhalten der Fehler
     $isError = false;
@@ -110,8 +116,10 @@ if (isset($_GET['eintragen'])) {
         }
 
         // Anfrage zusammenstellen der an die DB geschickt werden soll
-        $sql = "INSERT INTO book (autor, titel, kapitel, buchart, isbn, erscheinungsjahr, auflage, genre)
-            VALUES('$autor', '$titel', '$kapitel', '$art', '$isbn', '$erscheinungsjahr', '$auflage', '$genre')";
+        $sql = "INSERT INTO book (autor, titel, kapitel, buchart, isbn, erscheinungsjahr, auflage, isHorror, isPsycho, isKrimi,
+        isDoku, isKomoedie, isRoman)
+        VALUES('$autor', '$titel', '$kapitel', '$art', '$isbn', '$erscheinungsjahr', '$auflage', '$isHorror', '$isPsycho',
+        '$isKrimi', '$isDoku', '$isKomoedie', '$isRoman')";
 
         // Schickt die Anfrage an die DB und schreibt die Daten in die Tabelle
         $sqlResult = mysqli_query($conn,$sql);
@@ -120,8 +128,8 @@ if (isset($_GET['eintragen'])) {
             echo "Datensatz konnte nicht gespeichert werden";
 
         // Anfrage zusammenstellen der an die DB geschickt werden soll
-        $sql = "INSERT INTO benutzerInfo (benutzer, favorit)
-            VALUES('$name', '$favorit')";
+        $sql = "INSERT INTO benutzerInfo (vorname, nachname, favorit)
+        VALUES('$vorname', '$nachname', '$favorit')";
 
         $sqlResult = mysqli_query($conn,$sql);
         if (!$sqlResult)

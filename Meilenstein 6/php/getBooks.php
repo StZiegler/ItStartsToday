@@ -38,10 +38,10 @@ if (!$con) {
 $q = $_GET['q'];
 
 if($q == "horror")
-    $sql="SELECT * FROM book WHERE genre = 'horror'";
+    $sql="SELECT * FROM book WHERE isHorror = '1'";
 
 if($q == "roman")
-    $sql="SELECT * FROM book WHERE genre = 'romanze'";
+    $sql="SELECT * FROM book WHERE isRoman = '1'";
 
 $result = mysqli_query($con,$sql);
 
@@ -54,7 +54,6 @@ echo "<table>
 <th>ISBN</th>
 <th>Erscheinungsjahr</th>
 <th>Auflage</th>
-<th>Genre</th>
 </tr>";
 while($row = mysqli_fetch_array($result)) {
     echo "<tr>";
@@ -65,7 +64,6 @@ while($row = mysqli_fetch_array($result)) {
     echo "<td>" . $row['isbn'] . "</td>";
     echo "<td>" . $row['erscheinungsjahr'] . "</td>";
     echo "<td>" . $row['auflage'] . "</td>";
-    echo "<td>" . $row['genre'] . "</td>";
     echo "</tr>";
 }
 echo "</table>";
