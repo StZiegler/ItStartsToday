@@ -18,99 +18,42 @@ function hide_elements()
     }
 }
 
-function isLoaded(exists){
+function isLoaded(table){
 
-    if(exists){
+    if(table == "horror"){
         document.getElementById("horror").style.background = "rgb(0,162,232)";
         document.getElementById("roman").style.background = "rgb(63,72,204)";
-        hide_elements('id02');
-        show_elements('id01');
-    }else {
+        hide_elements('bookTableRoman');
+        show_elements('bookTableHorror');
+    }else if(table == "roman"){
         document.getElementById("roman").style.background = "rgb(0,162,232)";
         document.getElementById("horror").style.background = "rgb(63,72,204)";
-        hide_elements('id01');
-        show_elements('id02');
+        hide_elements('bookTableHorror');
+        show_elements('bookTableRoman');
     }
 }
 
+//------------------------------>REQUEST an Server
+function loadDbBook(str) {
+    var xmlhttp = new XMLHttpRequest();
+    var url = "http://localhost/WAW-Project/ItStartsToday/Meilenstein 6/php/getBooks.php?q="+str;
 
-// JSON File "Horror" laden und an createTable() übergeben
-function createHorrorBook() {
-    var xmlhttp_horror = new XMLHttpRequest();
-    var horrorbooks = "http://localhost/WAW-Project/ItStartsToday/Meilenstein 5/php/getBooks.php?category=horror";
+    // Anfrage erstellen
+    xmlhttp.open("GET",url,true);
 
-    xmlhttp_horror.onreadystatechange = function () {
-        //Serverantwort der Anfrage als String
-        var response = xmlhttp_horror.responseText;
-
-        if (response !== "") {
-            var arr = JSON.parse(response);
-        }
+    xmlhttp.onreadystatechange = function () {
 
         // Antwort des Servers liegt vollständig vor und die Anfrage war erfolgreich
-        if (xmlhttp_horror.readyState == 4 && xmlhttp_horror.status == 200) {
-            document.getElementById("id01").innerHTML = createTable(arr.horrordata);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            if(str == "horror"){
+                document.getElementById("bookTableHorror").innerHTML = xmlhttp.responseText;
+            }
+            else {
+                document.getElementById("bookTableRoman").innerHTML = xmlhttp.responseText;
+            }
             document.getElementById("horror").style.background = "rgb(0,162,232)";
         }
     }
-    // Anfrage erstellen
-    xmlhttp_horror.open("GET", horrorbooks, true);
     // Anfrage absenden
-    xmlhttp_horror.send();
-}
-
-// JSON File "Roman" laden und an createTable() übergeben
-function createRomanBook() {
-    var xmlhttp_roman = new XMLHttpRequest();
-    var romanbooks = "http://localhost/WAW-Project/ItStartsToday/Meilenstein 5/php/getBooks.php?category=roman";
-
-    xmlhttp_roman.onreadystatechange = function () {
-        var response = xmlhttp_roman.responseText;
-        
-        if (response !== "") {
-            var arr = JSON.parse(response);
-        }
-
-        if (xmlhttp_roman.readyState == 4 && xmlhttp_roman.status == 200) {
-            document.getElementById("id02").innerHTML = createTable(arr.romandata);
-        }
-    }
-    xmlhttp_roman.open("GET", romanbooks, true);
-    xmlhttp_roman.send();
-}
-
-// dynamische Tabelle erzeugen
-function createTable(arr) {
-    var i;
-    var out = "<table>";
-
-    out += "<tr id='tableHead'><td>" + "Autor" +
-    "</td><td>" + "Titel" +
-    "</td><td>" + "Kapitel" +
-    "</td><td>" + "Buchart" +
-    "</td><td>" + "ISBN" +
-    "</td><td>" + "Erscheinungsjahr" +
-    "</td><td>" + "Auflage" +
-    "</td></tr>";
-
-    for (i = 0; i < arr.length; i++) {
-        out += "<tr><td>" +
-        arr[i].autor +
-        "</td><td>" +
-        arr[i].titel +
-        "</td><td>" +
-        arr[i].kapitel +
-        "</td><td>" +
-        arr[i].buchart +
-        "</td><td>" +
-        arr[i].ISBN +
-        "</td><td>" +
-        arr[i].erscheinungsjahr +
-        "</td><td>" +
-        arr[i].auflage +
-        "</td></tr>";
-    }
-    out += "</table>"
-
-    return out;
+    xmlhttp.send();
 }
