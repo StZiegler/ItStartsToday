@@ -17,43 +17,43 @@
 </div>
 
 <div class="main">
-    <form name="bookentry" action="http://localhost/WAW-Project/ItStartsToday/Meilenstein 5/php/buchanlegen.php" method="GET">
+    <form name="bookentry" action="http://localhost/WAW-Project/ItStartsToday/Meilenstein 6/php/buchanlegen.php?q=" method="GET">
 
 
         <div class="section">
             <div class="form">
                 <label for="buchtitel">Buchtitel</label>
-                <input type="text" size="30" id="buchtitel" class="input" name="Titel" placeholder="titel" autofocus />
+                <input type="text" size="30" id="buchtitel" class="input" name="titel" placeholder="titel" autofocus />
             </div>
 
             <div class="form">
                 <label for="buchautor">Buchautor</label>
-                <input type="text" size="30" id="buchautor" class="input" name="Buchautor" placeholder="autor"/>
+                <input type="text" size="30" id="buchautor" class="input" name="autor" placeholder="autor"/>
             </div>
 
             <div class="form">
                 <label for="isbn">ISBN</label>
-                <input type="text" size="30" id="isbn" class="input" name="ISBN" placeholder="ISBN 978-3-86680-192-9"/>
+                <input type="text" size="30" id="isbn" class="input" name="isbn" placeholder="ISBN 978-3-86680-192-9"/>
             </div>
 
             <div class="form">
                 <label for="kapitel">Kapitel</label>
-                <input type="number" id="kapitel" class="input" name="Kapitel" step="0.1" placeholder="1"/>
+                <input type="number" id="kapitel" class="input" name="kapitel" step="0.1" placeholder="1"/>
             </div>
 
             <div class="form">
                 <label for="jahr">Erscheinungsjahr</label>
-                <input type="number" id="jahr" class="input" name="Erscheinungsjahr" step="1" placeholder="2000" />
+                <input type="number" id="jahr" class="input" name="erscheinungsjahr" step="1" placeholder="2000" />
             </div>
 
             <div class="form">
                 <label for="auflage">Auflage</label>
-                <input type="number" id="auflage" class="input" name="Auflage" step="1" placeholder="1"/>
+                <input type="number" id="auflage" class="input" name="auflage" step="1" placeholder="1"/>
             </div>
 
             <div class="form">
                 <label for="art">Art des Buches</label>
-                <select class="input" name="Art" size="1" id="art">
+                <select class="input" name="art" size="1" id="art">
                     <option value="eBook">eBook</option>
                     <option value="Newspaper">Newspaper</option>
                     <option value="Taschenbuch">Taschenbuch</option>
@@ -68,30 +68,30 @@
                 <div class="box1">
                     <div>
                         <label for="horror">Horror</label>
-                        <input type="checkbox" id="horror" class="genre" name="Genre" value="Horror" checked="checked"/>
+                        <input type="checkbox" id="horror" class="genre" name="genre[]" value="horror" checked="checked"/>
                     </div>
                     <div>
                         <label for="psycho">Psycho</label>
-                        <input type="checkbox" id="psycho" class="genre" name="Genre" value="Psycho" />
+                        <input type="checkbox" id="psycho" class="genre" name="genre[]" value="psycho" />
                     </div>
                     <div>
                         <label for="krimi">Krimi</label>
-                        <input type="checkbox" id="krimi" class="genre" name="Genre" value="Krimi" />
+                        <input type="checkbox" id="krimi" class="genre" name="genre[]" value="krimi" />
                     </div>
                 </div>
 
                 <div class="box2">
                     <div>
                         <label for="doku">Doku</label>
-                        <input type="checkbox" id="doku" class="genre" name="Genre" value="Doku" />
+                        <input type="checkbox" id="doku" class="genre" name="genre[]" value="doku" />
                     </div>
                     <div>
                         <label for="komoedie">Komödie</label>
-                        <input type="checkbox" id="komoedie" class="genre" name="Genre" value="Komödie" />
+                        <input type="checkbox" id="komoedie" class="genre" name="genre[]" value="komoedie" />
                     </div>
                     <div>
                         <label for="romanze">Romanze</label>
-                        <input type="checkbox" id="romanze" class="genre" name="Genre" value="Romanze" />
+                        <input type="checkbox" id="romanze" class="genre" name="genre[]" value="romanze" />
                     </div>
                 </div>
             </div>
@@ -100,22 +100,20 @@
         <div class="reg">
             <div class="form">
                 <label for="vorname">Ihr Vorname</label>
-                <input type="text" class="input" size="30" id="vorname" name="Ihr Vorname" placeholder="vorname"/>
+                <input type="text" class="input" size="30" id="vorname" name="vorname" placeholder="vorname"/>
             </div>
             <div class="form">
                 <label for="nachname">Ihr Nachname</label>
-                <input type="text" class="input" size="30" id="nachname" name="Ihr Nachname" placeholder="nachname"/>
+                <input type="text" class="input" size="30" id="nachname" name="nachname" placeholder="nachname"/>
             </div>
             <div class="form">
                 <label for="favorit">Favorit makieren</label>
-                <input type="checkbox" id="favorit" name="Favorit makieren" checked="checked"/>
+                <input type="checkbox" id="favorit" name="favorit" checked="checked"/>
             </div>
         </div>
 
         <div>
-            <input type="submit" class="button" value="Absenden" onclick="return validation()"/>
-            <!-- alert('Die Formularfelder werden an das ' +
-                'php-Skript http://martinakraus.net/createBookEntry.php übertragen!') -->
+            <input type="submit" class="button" name="eintragen" value="Absenden" onclick="return validation()"/>
         </div>
     </form>
 </div>
