@@ -30,21 +30,27 @@ header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization, X-Request-With');
 header('Access-Control-Allow-Credentials: true');
 
+// verbindung zum server herstellen
 $con = mysqli_connect('localhost','root','','myBooks');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
 
+
 $q = $_GET['q'];
 
+// sql abfrage
+// holt alle horror und roman genre aus book
 if($q == "horror")
     $sql="SELECT * FROM book WHERE isHorror = '1'";
 
 if($q == "roman")
     $sql="SELECT * FROM book WHERE isRoman = '1'";
 
+// führt die abfrage aus
 $result = mysqli_query($con,$sql);
 
+// erstellt die tabelle und gibt sie aus
 echo "<table>
 <tr id='head'>
 <th>Autor</th>
