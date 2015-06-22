@@ -97,15 +97,17 @@ if (isset($_GET['eintragen'])) {
     // Speicher die Daten in der Datenbank, falls kein Fehler vorliegt
     if (!$isError) {
         $userId = 0;
+        $bookId = 0;
 
-        $sqli = "SELECT user_id FROM benutzerInfo WHERE vorname='$vorname' AND nachname ='$nachname'"; 
-        $result = mysqli_query($conn, $sqli); 
+        $sqli = "SELECT id FROM benutzerInfo WHERE vorname='$vorname' AND nachname ='$nachname'"; 
+        $sqlResult = mysqli_query($conn, $sqli); 
 
-        while ($row = mysqli_fetch_array($result)) {
-            $userId = $row["user_id"];
+        while ($row = mysqli_fetch_array($sqlResult)) {
+            $userId = $row["id"];
         }
-    
 
+        echo "<p>UserID erhalten: " . $userId . "</p>";
+    
         //Anzahl aktiver checkboxen
         $anzahl = count ( $_GET['genre'] );
 
@@ -125,30 +127,53 @@ if (isset($_GET['eintragen'])) {
             $genre="-";
         }
 
-        // Anfrage zusammenstellen der an die DB geschickt werden soll
+        // Anfrage für den User zusammenstellen der an die DB geschickt werden soll
+        if($userId == 0) {
+	        $sql = "INSERT INTO benutzerInfo (vorname, nachname)
+	        VALUES('$vorname', '$nachname')";
+
+	        $sqlResult = mysqli_query($conn,$sql);
+	        if (!$sqlResult) {
+	            echo "Datensatz konnte nicht gespeichert werden";
+	        } else {
+		        $userId = mysqli_insert_id($conn);
+		        echo "<p>UserID erhalten: " . $userId . "</p>";
+	        }
+        }   
+
+        // Anfrage für das Buch zusammenstellen der an die DB geschickt werden soll
         $sql = "INSERT INTO book (autor, titel, kapitel, buchart, isbn, erscheinungsjahr, auflage, isHorror, isPsycho, isKrimi,
-        isDoku, isKomoedie, isRoman)
+        isDoku, isKomoedie, isRoman, user_id)
         VALUES('$autor', '$titel', '$kapitel', '$art', '$isbn', '$erscheinungsjahr', '$auflage', '$isHorror', '$isPsycho',
-        '$isKrimi', '$isDoku', '$isKomoedie', '$isRoman')";
+        '$isKrimi', '$isDoku', '$isKomoedie', '$isRoman', '$userId')";
 
         // Schickt die Anfrage an die DB und schreibt die Daten in die Tabelle
         $sqlResult = mysqli_query($conn,$sql);
 
-        if (!$sqlResult) // Datensatz konnte nicht gespeichert werden:
+        if (!$sqlResult) {
             echo "Datensatz konnte nicht gespeichert werden";
+        } else {
+        	$bookId = mysqli_insert_id($conn);
+        	 echo "<p>BuchID erhalten: " . $bookId . "</p>";
+        }
 
-        // Anfrage zusammenstellen der an die DB geschickt werden soll
-        if($userId == 0) {
-        $sql = "INSERT INTO benutzerInfo (vorname, nachname, favorit)
-        VALUES('$vorname', '$nachname', '$favorit')";
+        // Falls Favorit, dann Anfrage für die Favoriten erstellen
+        if ($favorit == 1 && $userId > 0 && $bookId > 0) {
+	        $sql = "INSERT INTO favorit (user_id, book_id)
+	        VALUES('$userId', '$bookId')";
 
-        $sqlResult = mysqli_query($conn,$sql);
-        if (!$sqlResult)
-            echo "Datensatz konnte nicht gespeichert werden";
-        }   
+	        $sqlResult = mysqli_query($conn,$sql);
+	        if (!$sqlResult) {
+	            echo "Datensatz konnte nicht gespeichert werden";
+	        }
+        }
+
     } else {
         echo "\n Die Daten sind Fehlerhaft, weshalb diese nicht in der Datenbank gespeichert werden können!";
     }
+
+    header("Location: ../../Meilenstein 2/html/home.html");
+	die();
 
 } // ENDE: if(isset($_GET['eintragen'])) ...
 
