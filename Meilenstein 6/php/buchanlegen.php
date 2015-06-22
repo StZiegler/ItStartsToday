@@ -108,24 +108,6 @@ if (isset($_GET['eintragen'])) {
 
         echo "<p>UserID erhalten: " . $userId . "</p>";
     
-        //Anzahl aktiver checkboxen
-        $anzahl = count ( $_GET['genre'] );
-
-        if ( $anzahl == 1 )  {
-            $genre = $_GET['genre'][0];
-        }
-        //Wenn mehrere Checkboxen aktiviert sind, muss eine Schleife durchlaufen werden
-        else if ( $anzahl > 1 ) {
-            //erstellt ein leeres array
-            $arten = array ();
-            foreach ( $_GET['genre'] as $art ){
-                $arten[] = $art ;
-            }
-            // implode() Verbindet Array-Elemente zu einem String
-            $genre = implode ( ', ', $arten );
-        }else{
-            $genre="-";
-        }
 
         // Anfrage für den User zusammenstellen der an die DB geschickt werden soll
         if($userId == 0) {
@@ -168,12 +150,13 @@ if (isset($_GET['eintragen'])) {
 	        }
         }
 
+        header("Location: ../../Meilenstein 2/html/home.html");
+        die();
+
     } else {
         echo "\n Die Daten sind Fehlerhaft, weshalb diese nicht in der Datenbank gespeichert werden können!";
     }
 
-    header("Location: ../../Meilenstein 2/html/home.html");
-	die();
 
 } // ENDE: if(isset($_GET['eintragen'])) ...
 
