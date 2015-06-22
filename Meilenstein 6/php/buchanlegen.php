@@ -149,7 +149,7 @@ if (isset($_GET['eintragen'])) {
 	            echo "Datensatz konnte nicht gespeichert werden";
 	        }
         }
-
+        // go back to home if form data was ok
         header("Location: ../../Meilenstein 2/html/home.html");
         die();
 
@@ -162,21 +162,23 @@ if (isset($_GET['eintragen'])) {
 
 mysqli_close($conn);
 
+
+//validation function
 function isNotText($value) {
     if($value != "") {
-       return preg_match("/^[a-zA-Z]+$/", $value) == 0;
+       return preg_match("/^[a-zA-Z[:space:]]+$/", $value) == 0;
     }
 
     return true;
 }
-
+// check isbn 13 numbers
 function isNotISBN($value) {
     if ($value != "") {
         return preg_match("/^[0-9]{13}$/", $value) == 0;
     }
     return true;
 }
-
+// check release date between 1000 and 2015
 function isNotRelease ($value) {
     if ($value != "") {
         // not smaller than 1000 and not bigger than 2015
@@ -187,7 +189,7 @@ function isNotRelease ($value) {
     }
     return true;
 }
-
+// check auflage bigger 0
 function isNotCirc ($value) {
     if($value != "") {
         if ($value > 0) {
@@ -196,7 +198,7 @@ function isNotCirc ($value) {
     }
     return true;
 }
-
+// check capitel bigger 0
 function isNotCap ($value) {
     if($value !="") {
         if($value > 0) {
